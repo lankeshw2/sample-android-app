@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_orange_light"
+    android:orientation="vertical"
+    android:paddingVertical="10pt"
+    >
+
+
+    <android.widget.TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerPadding="20pt"
+
+
+        tools:context="com.example.lankesh.filetransferapp.MainActivity">
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingVertical="10pt">
+
+
+            <TextView
+                android:id="@+id/serverPort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:text="Server Port:"
+                android:textAlignment="textEnd"
+                android:textAllCaps="true"
+                android:textColor="@android:color/background_dark"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/fileServerPort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
+                android:ems="10"
+                android:inputType="number"
+                android:text="" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingVertical="10pt">
+
+            <TextView
+                android:id="@+id/filePath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:text="Upload Folder Path:"
+                android:textAlignment="textEnd"
+                android:textAllCaps="true"
+                android:textColor="@android:color/background_dark"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/serverUploadFolderPath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/darker_gray"
+                android:backgroundTint="@android:color/darker_gray"
+                android:ems="10"
+                android:inputType="text"
+                android:text="" />
+
+
+        </TableRow>
+
+
+    </android.widget.TableLayout>
+
+    <android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingVertical="10pt">
+
+
+        <Button
+            android:id="@+id/selectFolderButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="10pt"
+            android:paddingRight="10pt"
+            android:text="Choose upload folder on device..."
+            android:textAllCaps="false"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold|italic" />
+
+
+        <TextView
+            android:id="@+id/errorText"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/startServerButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="20pt"
+            android:paddingRight="20pt"
+            android:text="Start Server"
+            android:textAllCaps="false"
+            android:textColor="@android:color/background_light"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/networkInterfaceText"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:text=""
+            android:textAlignment="center" />
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            ads:adSize="BANNER"/>
+
+    </android.widget.LinearLayout>
+
+
+
+
+</android.widget.LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

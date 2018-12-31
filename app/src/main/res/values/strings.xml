@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FileX Server</string>
+    <string name="title_activity_fileui_layout">Browse Folders...</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="backButtonText"><![CDATA[<<<]]></string>
+</resources>

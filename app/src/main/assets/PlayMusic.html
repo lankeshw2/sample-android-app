@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>File Server</title>
+    
+    <style type="text/css">
+    <!--
+	
+	
+	.formFileSelecter {
+	
+	  border-radius: 25px; 
+	
+	   padding:20px;
+	   display:block;
+	   border-color:black;
+	   background-color:#66778A;
+	
+      
+	 } 
+	 
+	 .viewfilesButtonContainer{
+	
+	  border-radius: 25px; 
+	
+	   padding:20px;
+	   display:block;
+	   border-color:black;
+	   background-color:#66778A;
+	
+      
+	 } 
+	 
+	 .formSendButton{
+	
+	  border-radius: 25px; 
+	   padding-top:10%;
+	   padding-left:25%;
+	   padding-bottom:10%;
+	   display:block;
+	   
+	  background-color:#328050;
+	   
+	
+      
+	 } 
+	
+	.uploadform {
+	 
+	 background-color:#400040;
+	  
+      border-radius: 25px;     
+	  position:relative; 
+	  width:100%;
+	  height:50%;
+	  display:block;
+	  text-align:center;
+	  color:white;
+	 } 
+	
+	.header {
+	   font-size:200%;
+	    border-radius: 25px; 
+	   font-family:Callibri;
+	   display:block;
+	  background-color:#154266;
+	  text-align:center;
+	  color:white;
+	 } 
+	 
+	 .infoBar {
+	   font-size:100%;
+	   font-family:Callibri;
+	   display:block;
+	  background-color:#377DFF;
+	  text-align:center;
+	  color:white;
+	 } 
+	
+	.formButton {
+	   width:50%;
+	  display:block;
+	  background-color:#154266;
+	  color:white;
+	  alignment-adjust:middle;
+	 } 
+	 
+	 .sendButton{
+	  
+	  width:50%;
+	  height:25%;
+	  display:block;
+	  background-color:#154266;
+	  color:white;
+	  
+	 } 
+	 
+	  .playButton{
+	  
+	  display:block;
+	  background-color:#154266;
+	  color:white;
+	  
+	 } 
+	 
+	 .formButton:hover {
+	 
+	  display:block;
+	  background-color:blue;
+	 } 
+    body {
+      color:#000000;
+      background-color:#A3BFF2;
+      background-repeat:no-repeat;
+    }
+    .songName {
+	   border-radius: 10px;
+	   color:#0000FF;
+	    display:block;
+        color:white;
+        text-align:left;
+        background-color:black;
+        border:solid;
+		
+	 }
+   
+   a:link {
+    text-decoration: none;
+}
+    -->
+    </style>
+    <!--[if IE]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]--> 
+  </head>
+  <body>
+  
+   
+  <div class="uploadform" >
+     <div class="header">
+         Audio Files
+	  </div>
+	  
+	  <div class="viewfilesButtonContainer" >
+         <button class="sendButton"  type="button" value="Submit" onclick="listAudioFiles()" >View Audio Files</button>
+    </div>
+	 <div class="viewfilesButtonContainer" >
+         <button  class="sendButton"  type="button" value="Submit" onclick="stop()" >Stop Playing</button>
+    </div>
+    <div id="status" class="infoBar">
+	  
+	
+	</div>
+	<div class="viewfilesButtonContainer" id="viewfilesButtonContainer">
+	
+     
+    </div>
+	
+	
+	  
+	
+	</div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+<script>
+
+var fileContent;
+
+var fileName;
+
+  serverUrl = window.location.origin;
+
+function play(song) {
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function() {
+      if (this.readyState == 4 ) {
+	    if(this.status == 200){
+      document.getElementById('status').innerHTML=httpRequest.responseText;
+	  document.getElementById('status').style.backgroundColor="#66778A";
+	
+	  }else {
+	   document.getElementById('status').innerHTML="Could not play the file";
+	    document.getElementById('status').style.backgroundColor="red";
+	   
+	  }
+    }
+  };
+  httpRequest.open("GET", serverUrl+"/audio/play/"+song, true);
+  httpRequest.responseType = 'text';
+  httpRequest.send();
+}
+
+
+function stop() {
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function() {
+      if (this.readyState == 4 ) {
+	    if(this.status == 200){
+      document.getElementById('status').innerHTML=httpRequest.responseText;
+	  document.getElementById('status').style.backgroundColor="#66778A";
+	
+	  }else {
+	   document.getElementById('status').innerHTML="Could not stop  the play";
+	    document.getElementById('status').style.backgroundColor="red";
+	   
+	  }
+    }
+  };
+  httpRequest.open("GET", serverUrl+"/audio/stop", true);
+  httpRequest.responseType = 'text';
+  httpRequest.send();
+}
+
+
+
+function listAudioFiles() {
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function() {
+      if (this.readyState == 4 ) {
+	    if(this.status == 200){
+		
+		var musicFileList = JSON.parse(httpRequest.responseText); 
+		var fileArray = musicFileList.audioFileList;
+		
+		if( fileArray.length > 0 ){
+		
+        var tableMusicFiles = "<table>";
+		
+		for( index=0; index < fileArray.length; index++){
+		     tableMusicFiles +="<tr> <td class=\"songName\">" + decodeURIComponent(fileArray[index])+"</td>" +"<td>" +"<button  class=\"playButton\"  type=\"button\" value=\"Submit\" onclick=\"play('"+fileArray[index]+"')\">Play</button></td></tr>";
+		}
+	 
+	     tableMusicFiles +="</table>";
+		 document.getElementById('viewfilesButtonContainer').style.backgroundColor="#66778A";
+		 document.getElementById('viewfilesButtonContainer').innerHTML=tableMusicFiles;
+		 
+		 } else {
+		    document.getElementById('viewfilesButtonContainer').style.backgroundColor="#66778A";
+		    document.getElementById('viewfilesButtonContainer').innerHTML="No MP3 Audio files were found.";
+		 }
+		 
+	
+	  }else {
+	   document.getElementById('viewfilesButtonContainer').innerHTML="Could not list audio files";
+	    document.getElementById('viewfilesButtonContainer').style.backgroundColor="red";
+	   
+	  }
+    }
+  };
+  httpRequest.open("GET", serverUrl+"/audio/list", true);
+  httpRequest.responseType = 'text';
+  httpRequest.send();
+}
+
+
+
+
+</script>  
+  
+
+  </body>
+</html>

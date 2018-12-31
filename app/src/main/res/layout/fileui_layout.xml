@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_orange_light"
+    android:orientation="horizontal"
+    tools:context="com.example.lankesh.filetransferapp.FileuiLayoutActivity">
+
+
+    <ListView
+        android:id="@+id/fileList"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_dark"
+
+        android:scrollbarAlwaysDrawHorizontalTrack="false">
+
+
+    </ListView>
+
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@android:color/holo_blue_dark"
+        android:text="@string/backButtonText"
+        android:textAlignment="center"
+
+        android:textColor="@android:color/black"
+        android:textStyle="bold|italic" />
+
+    <Button
+        android:id="@+id/selectFolderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@android:color/holo_purple"
+        android:text="Select"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textStyle="bold" />
+
+
+</android.widget.LinearLayout>
